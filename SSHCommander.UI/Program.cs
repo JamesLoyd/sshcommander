@@ -3,9 +3,9 @@ using Terminal.Gui;
 
 namespace SSHCommander.UI
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Application.Init();
             var top = Application.Top;
@@ -27,6 +27,26 @@ namespace SSHCommander.UI
             })});
 
             top.Add(menu);
+
+            var label = new Label("IP Address"){
+                X = 1,
+                Y = 3,
+                Width = 50
+            };
+            var ipAddress = new TextField("") {
+                X = Pos.Bottom(label),
+                Y= Pos.Bottom(label),
+                Width = Dim.Width(label)
+            };
+            
+            var button = new Button("Submit") {
+                X = 1,
+                Y = 10,
+                Width = Dim.Width(ipAddress)
+            };
+
+            button.Clicked = () => label.Text = ipAddress.Text;
+            window.Add(label, ipAddress, button);
 
             Application.Run();
         }
