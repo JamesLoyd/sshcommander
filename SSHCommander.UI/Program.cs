@@ -1,4 +1,5 @@
 ﻿using System;
+using SSHCommander.UI.Views;
 using Terminal.Gui;
 
 namespace SSHCommander.UI
@@ -18,37 +19,20 @@ namespace SSHCommander.UI
             };
 
             top.Add(window);
+            var menu = GetMenu(window);
+            top.Add(menu);
+            window.Add(new ConnectView());
+            Application.Run();
+        }
 
-            var menu = new MenuBar(new MenuBarItem[] {new MenuBarItem("_File", new[] {
+        private static MenuBar GetMenu(Window window)
+        {
+            return new MenuBar(new MenuBarItem[] {new MenuBarItem("_File", new[] {
                 new MenuItem("_Quit", "It quits the application", () =>
                 {
                     Application.RequestStop();
                 })
             })});
-
-            top.Add(menu);
-
-            var label = new Label("IP Address"){
-                X = 1,
-                Y = 3,
-                Width = 50
-            };
-            var ipAddress = new TextField("") {
-                X = Pos.Bottom(label),
-                Y= Pos.Bottom(label),
-                Width = Dim.Width(label)
-            };
-            
-            var button = new Button("Submit") {
-                X = 1,
-                Y = 10,
-                Width = Dim.Width(ipAddress)
-            };
-
-            button.Clicked = () => label.Text = ipAddress.Text;
-            window.Add(label, ipAddress, button);
-
-            Application.Run();
         }
     }
 }
