@@ -57,8 +57,5 @@ namespace SSHCommander.UI.Views
             button.Clicked = () => label.Text = $"{userNameText.Text}@{ipAddress.Text}";
             Add(label, ipAddress, userNameLabel, userNameText, keyFileLabel, keyFileText, button);
         }
-
-
-
     }
 }
